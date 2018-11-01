@@ -1,0 +1,14 @@
+#!/bin/sh
+OLDPATH="$PATH"
+WHEREAMI=`pwd`
+
+SCRIPTDIR="`dirname \"$0\"`"
+LIBRARIES="`cd \"$SCRIPTDIR/lib\" && pwd`"
+
+export PATH="$SCRIPTDIR/node_binaries/bin:$PATH"
+NODEINST="`which node`"
+
+  node lib/cli-wallet.js $@
+
+export PATH="$OLDPATH"
+cd "$WHEREAMI"
