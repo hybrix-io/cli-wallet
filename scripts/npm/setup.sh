@@ -1,5 +1,5 @@
 #!/bin/sh
-OLDPATH=""$PATH"
+OLDPATH="$PATH"
 WHEREAMI="`pwd`"
 NODEINST="`which node`"
 
@@ -10,7 +10,7 @@ HYBRIDD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 INTERFACE="$HYBRIDD/interface"
 NODE="$HYBRIDD/node"
 DETERMINISTIC="$HYBRIDD/deterministic"
-NODEJS="$HYBRIDD/nodejs-v8-lts"
+NODEJS="$HYBRIDD/nodejs"
 COMMON="$HYBRIDD/common"
 CLI_WALLET="$HYBRIDD/cli-wallet"
 
@@ -35,7 +35,7 @@ if [ ! -e "$CLI_WALLET/node_binaries" ];then
     if [ ! -e "$NODEJS" ];then
         cd "$HYBRIDD"
         echo " [i] Clone node js runtimes files"
-        git clone https://github.com/internetofcoins/nodejs-v8-lts.git
+        git clone https://gitlab.com/iochq/hybridd/dependencies/nodejs.git
     fi
     echo " [i] Link NODEJS files"
     ln -sf "$NODEJS/$SYSTEM" "$CLI_WALLET/node_binaries"
@@ -54,15 +54,15 @@ if [ ! -e "$CLI_WALLET/common" ];then
         git clone https://www.gitlab.com/iochq/hybridd/common.git
     fi
     echo " [i] Link common files"
-    ln -sf "$COMMON" "$$CLI_WALLET/common"
+    ln -sf "$COMMON" "$CLI_WALLET/common"
 
 fi
 
-if [ ! -e "$CLI_WALLET/lib/interface.js"];then
+if [ ! -e "$CLI_WALLET/lib/interface.js" ];then
     ln -sf "$INTERFACE/lib/interface.js" "$CLI_WALLET/lib/interface.js"
 fi
 
-if [ ! -e "$CLI_WALLET/lib/hybridNode.js"];then
+if [ ! -e "$CLI_WALLET/lib/hybridNode.js" ];then
     ln -sf "$INTERFACE/lib/hybridNode.js" "$CLI_WALLET/lib/hybridNode.js"
 fi
 
