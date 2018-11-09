@@ -1,14 +1,24 @@
 #!/bin/sh
 OLDPATH="$PATH"
-WHEREAMI=`pwd`
-
-SCRIPTDIR="`dirname \"$0\"`"
-LIBRARIES="`cd \"$SCRIPTDIR/lib\" && pwd`"
-
-export PATH="$SCRIPTDIR/node_binaries/bin:$PATH"
+REALPATH="`realpath $0`"
+WHEREAMI="`dirname $REALPATH`"
+LIBRARIES="`cd \"$WHEREAMI/lib\" && pwd`"
 NODEINST="`which node`"
+export PATH="$WHEREAMI/node_binaries/bin:$PATH"
 
-  node lib/cli-wallet.js $@
+if [ -z "$1" ]; then
+  echo ""
+  echo "Welcome to Internet of Coins cli-wallet. A command line wallet for"
+  echo "checking balances and performing transactions."
+  echo ""
+  echo "Type:  cli-wallet --help  ...to find out how to use the wallet."
+  echo ""
+  exit 0
+fi
+
+cd "$WHEREAMI" 2>&1 > /dev/null
+
+  node $LIBRARIES/cli-wallet.js $@
 
 export PATH="$OLDPATH"
-cd "$WHEREAMI"
+cd - 2>&1 > /dev/null
