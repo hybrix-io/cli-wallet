@@ -58,13 +58,28 @@ if [ ! -e "$CLI_WALLET/common" ];then
 
 fi
 
-if [ ! -e "$CLI_WALLET/lib/interface.js" ];then
-    ln -sf "$INTERFACE/lib/interface.js" "$CLI_WALLET/lib/interface.js"
+#if [ ! -e "$CLI_WALLET/lib/interface.js" ];then
+#    ln -sf "$INTERFACE/lib/interface.js" "$CLI_WALLET/lib/interface.js"
+#fi
+
+#if [ ! -e "$CLI_WALLET/lib/hybridNode.js" ];then
+#    ln -sf "$INTERFACE/lib/hybridNode.js" "$CLI_WALLET/lib/hybridNode.js"
+#fi
+
+# INTERFACE
+if [ ! -e "$CLI_WALLET/interface" ];then
+
+    echo " [!] cli-wallet/interface not found."
+
+    if [ ! -e "$INTERFACE" ];then
+        cd "$HYBRIDD"
+        echo " [i] Clone interface files"
+        git clone https://www.gitlab.com/iochq/hybridd/interface.git
+    fi
+    echo " [i] Link interface files"
+    ln -sf "$INTERFACE/dist" "$CLI_WALLET/interface"
 fi
 
-if [ ! -e "$CLI_WALLET/lib/hybridNode.js" ];then
-    ln -sf "$INTERFACE/lib/hybridNode.js" "$CLI_WALLET/lib/hybridNode.js"
-fi
 
 export PATH="$OLDPATH"
 cd "$WHEREAMI"

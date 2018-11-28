@@ -1,0 +1,35 @@
+{
+  "name": "cli-wallet",
+  "version": "1.0.0",
+  "description": "command line wallet for hybridd",
+  "main": "lib/cli-wallet.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "sh scripts/npm/setup.sh",
+    "diag": "sh scripts/npm/diag.sh",
+    "build": "sh scripts/npm/setup.sh",
+    "start": "sh cli-wallet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/iochq/hybridd/client/implementations/cli-wallet.git"
+  },
+  "keywords": [
+    "textbased",
+    "user",
+    "interface",
+    "wallet",
+    "hybridd",
+    "blockchain",
+    "crypto"
+  ],
+  "author": "Internet of Coins",
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "clipboardy": "^1.2.3"
+  }
+}
