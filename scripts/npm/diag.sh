@@ -3,16 +3,16 @@ OLDPATH=$PATH
 WHEREAMI=`pwd`
 NODEINST=`which node`
 
-# $HYBRIDD/interface/scripts/npm  => $HYBRIDD
+# $HYBRIXD/interface/scripts/npm  => $HYBRIXD
 SCRIPTDIR="`dirname \"$0\"`"
-HYBRIDD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
+HYBRIXD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 
-INTERFACE="$HYBRIDD/interface"
-NODE="$HYBRIDD/node"
-DETERMINISTIC="$HYBRIDD/deterministic"
-NODEJS="$HYBRIDD/nodejs"
-COMMON="$HYBRIDD/common"
-WEB_WALLET="$HYBRIDD/web-wallet"
+INTERFACE="$HYBRIXD/interface"
+NODE="$HYBRIXD/node"
+DETERMINISTIC="$HYBRIXD/deterministic"
+NODEJS="$HYBRIXD/nodejs"
+COMMON="$HYBRIXD/common"
+WEB_WALLET="$HYBRIXD/web-wallet"
 
 GREEN="\033[0;32m"
 RED="\033[0;31m"

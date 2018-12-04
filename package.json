@@ -1,7 +1,7 @@
 {
   "name": "cli-wallet",
   "version": "1.0.0",
-  "description": "command line wallet for hybridd",
+  "description": "command line wallet for hybrixd",
   "main": "lib/cli-wallet.js",
   "directories": {
     "lib": "lib"
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/iochq/hybridd/client/implementations/cli-wallet.git"
+    "url": "https://gitlab.com/iochq/hybrixd/client/implementations/cli-wallet.git"
   },
   "keywords": [
     "textbased",
     "user",
     "interface",
     "wallet",
-    "hybridd",
+    "hybrixd",
     "blockchain",
     "crypto"
   ],

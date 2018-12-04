@@ -3,16 +3,16 @@ OLDPATH="$PATH"
 WHEREAMI="`pwd`"
 NODEINST="`which node`"
 
-# $HYBRIDD/interface/scripts/npm  => $HYBRIDD
+# $HYBRIXD/interface/scripts/npm  => $HYBRIXD
 SCRIPTDIR="`dirname \"$0\"`"
-HYBRIDD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
+HYBRIXD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 
-INTERFACE="$HYBRIDD/interface"
-NODE="$HYBRIDD/node"
-DETERMINISTIC="$HYBRIDD/deterministic"
-NODEJS="$HYBRIDD/nodejs"
-COMMON="$HYBRIDD/common"
-CLI_WALLET="$HYBRIDD/cli-wallet"
+INTERFACE="$HYBRIXD/interface"
+NODE="$HYBRIXD/node"
+DETERMINISTIC="$HYBRIXD/deterministic"
+NODEJS="$HYBRIXD/nodejs"
+COMMON="$HYBRIXD/common"
+CLI_WALLET="$HYBRIXD/cli-wallet"
 
 if [ "`uname`" = "Darwin" ]; then
     SYSTEM="darwin-x64"
@@ -33,9 +33,9 @@ if [ ! -e "$CLI_WALLET/node_binaries" ];then
     echo " [!] cli-wallet/node_binaries not found."
 
     if [ ! -e "$NODEJS" ];then
-        cd "$HYBRIDD"
+        cd "$HYBRIXD"
         echo " [i] Clone node js runtimes files"
-        git clone https://gitlab.com/iochq/hybridd/dependencies/nodejs.git
+        git clone https://gitlab.com/iochq/hybrixd/dependencies/nodejs.git
     fi
     echo " [i] Link NODEJS files"
     ln -sf "$NODEJS/$SYSTEM" "$CLI_WALLET/node_binaries"
@@ -49,9 +49,9 @@ if [ ! -e "$CLI_WALLET/common" ];then
     echo " [!] cli-wallet/common not found."
 
     if [ ! -e "$COMMON" ];then
-        cd "$HYBRIDD"
+        cd "$HYBRIXD"
         echo " [i] Clone common files"
-        git clone https://www.gitlab.com/iochq/hybridd/common.git
+        git clone https://www.gitlab.com/iochq/hybrixd/common.git
     fi
     echo " [i] Link common files"
     ln -sf "$COMMON" "$CLI_WALLET/common"
@@ -62,8 +62,8 @@ fi
 #    ln -sf "$INTERFACE/lib/interface.js" "$CLI_WALLET/lib/interface.js"
 #fi
 
-#if [ ! -e "$CLI_WALLET/lib/hybridNode.js" ];then
-#    ln -sf "$INTERFACE/lib/hybridNode.js" "$CLI_WALLET/lib/hybridNode.js"
+#if [ ! -e "$CLI_WALLET/lib/hybrixNode.js" ];then
+#    ln -sf "$INTERFACE/lib/hybrixNode.js" "$CLI_WALLET/lib/hybrixNode.js"
 #fi
 
 # INTERFACE
@@ -72,9 +72,9 @@ if [ ! -e "$CLI_WALLET/interface" ];then
     echo " [!] cli-wallet/interface not found."
 
     if [ ! -e "$INTERFACE" ];then
-        cd "$HYBRIDD"
+        cd "$HYBRIXD"
         echo " [i] Clone interface files"
-        git clone https://www.gitlab.com/iochq/hybridd/interface.git
+        git clone https://www.gitlab.com/iochq/hybrixd/interface.git
     fi
     echo " [i] Link interface files"
     ln -sf "$INTERFACE/dist" "$CLI_WALLET/interface"
