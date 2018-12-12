@@ -35,7 +35,7 @@ if [ ! -e "$CLI_WALLET/node_binaries" ];then
     if [ ! -e "$NODEJS" ];then
         cd "$HYBRIXD"
         echo " [i] Clone node js runtimes files"
-        git clone https://gitlab.com/iochq/hybrixd/dependencies/nodejs.git
+        git clone https://gitlab.com/hybrix/hybrixd/dependencies/nodejs.git
     fi
     echo " [i] Link NODEJS files"
     ln -sf "$NODEJS/$SYSTEM" "$CLI_WALLET/node_binaries"
@@ -51,7 +51,7 @@ if [ ! -e "$CLI_WALLET/common" ];then
     if [ ! -e "$COMMON" ];then
         cd "$HYBRIXD"
         echo " [i] Clone common files"
-        git clone https://www.gitlab.com/iochq/hybrixd/common.git
+        git clone https://www.gitlab.com/hybrix/hybrixd/common.git
     fi
     echo " [i] Link common files"
     ln -sf "$COMMON" "$CLI_WALLET/common"
@@ -74,7 +74,7 @@ if [ ! -e "$CLI_WALLET/interface" ];then
     if [ ! -e "$INTERFACE" ];then
         cd "$HYBRIXD"
         echo " [i] Clone interface files"
-        git clone https://www.gitlab.com/iochq/hybrixd/interface.git
+        git clone https://www.gitlab.com/hybrix/hybrixd/interface.git
     fi
     echo " [i] Link interface files"
     ln -sf "$INTERFACE/dist" "$CLI_WALLET/interface"
