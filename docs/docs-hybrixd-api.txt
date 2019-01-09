@@ -1,0 +1,7 @@
+Welcome to the hybrixd REST API. This Application Programming Interface can be used to retrieve information from hybrixd. The requests are formated as / separated commands. (Similar to a website url or file path.)
+
+GET /asset		List all available assets.
+GET /engine		List available engines.
+GET /help		Display help as html.
+GET /proc		List all processes.
+GET /source		List available sources.

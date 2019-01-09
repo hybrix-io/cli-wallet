@@ -11,7 +11,8 @@
     "setup": "sh scripts/npm/setup.sh",
     "diag": "sh scripts/npm/diag.sh",
     "build": "sh scripts/npm/setup.sh",
-    "start": "sh cli-wallet"
+    "start": "sh cli-wallet",
+    "generate_docs": "node scripts/npm/generate_docs.js"
   },
   "repository": {
     "type": "git",
