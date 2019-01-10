@@ -35,8 +35,18 @@ const inputJson = JSON.parse(fs.readFileSync(inputFilename));
 const stream = fs.createWriteStream(outputFilename);
 let output = '';
 
-function addItem(path, description) {
-    output += 'GET /' + path + '\t\t' + description + EOL;
+function levelTabs(level) {
+    let output = '';
+
+    for(let i = 0; i < level; i++) {
+        output += '\t';
+    }
+
+    return output;
+}
+
+function addItem(path, description, level) {
+    output += levelTabs(level) + 'GET /' + path + '\t\t' + description + EOL;
 }
 
 // start with the general help message
@@ -49,7 +59,7 @@ for (const outerKey in inputJson) {
         const subkey = inputJson[outerKey];
 
         if ('object' === typeof subkey && subkey.hasOwnProperty('_this')) {
-            addItem(outerKey, subkey['_this']);
+            addItem(outerKey, subkey['_this'], 0);
         }
     }
 }
