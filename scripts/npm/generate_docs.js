@@ -35,10 +35,10 @@ const inputJson = JSON.parse(fs.readFileSync(inputFilename));
 const stream = fs.createWriteStream(outputFilename);
 let output = '';
 
-function levelTabs(level) {
+function levelTabs(numLevels) {
     let output = '';
 
-    for(let i = 0; i < level; i++) {
+    for(let i = 0; i < numLevels; i++) {
         output += '\t';
     }
 
