@@ -11,6 +11,7 @@
     "setup": "sh scripts/npm/setup.sh",
     "diag": "sh scripts/npm/diag.sh",
     "build": "sh scripts/npm/setup.sh",
+    "lint": "sh ../common/scripts/lint/lint.sh cli-wallet",
     "start": "sh cli-wallet"
   },
   "repository": {
