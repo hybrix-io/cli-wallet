@@ -31,5 +31,8 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "clipboardy": "^1.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0"
   }
 }
