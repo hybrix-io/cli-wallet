@@ -37,6 +37,9 @@ dist:
   - apk add xz
   - apk add zip
    
+  - init 
+  
+  
   # set variables
   # version -> branchname without '-release'
   - version=${CI_COMMIT_REF_NAME/-release/}
@@ -45,8 +48,8 @@ dist:
   - path=cli-wallet/${version}/
   
   - ls 
-  - cp -r ./dist/. /tmp/${component}/
-  #- cp -r . /tmp/${component}/
+  #- cp -r ./dist/. /tmp/${component}/
+  - cp -r . /tmp/${component}/
     
   - cd /tmp
   - git clone --depth=1 https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist
