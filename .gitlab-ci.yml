@@ -42,7 +42,7 @@ dist:
   - version=${CI_COMMIT_REF_NAME/-release/}
   - component=cli-wallet
   - file=hybrixd.${component}.${version}
-  - path=interface/${version}/
+  - path=cli-wallet/${version}/
   
   - cp -r ./dist/. /tmp/${component}/
     
@@ -71,7 +71,7 @@ dist:
   - cp ${file}.tar.xz ./dist/${path}${file}.tar.xz
   
   # for interface we like to distribute the js files directly as well
-  - cp -r ./${component}/*.js ./dist/${path}
+  # - cp -r ./${component}/*.js ./dist/${path}
   - cd ./dist/
   
   # configure git-user
