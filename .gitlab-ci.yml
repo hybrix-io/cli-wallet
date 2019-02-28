@@ -84,8 +84,8 @@ dist:
   - "git push https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist -f || true"
 
   only:
-  refs:
-    - tags
+    refs:
+      - tags
   ##- /^v.*release$/
 
 # ---------------------------------------------------------------------------
