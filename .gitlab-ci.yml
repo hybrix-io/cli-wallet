@@ -28,17 +28,17 @@ interface:
     - ./*
 
 dist: 
-  image: alpine:latest
+  image: node:8.14.0-stretch
   stage: release
   script:
   # install the packages that we need
-  - apk update
-  - apk add curl
-  - apk add git
-  - apk add tar
-  - apk add xz
-  - apk add zip
-   
+  - apt-get update
+  - apt-get install curl
+  - apt-get install git
+  - apt-get install tar
+  - apt-get install xz
+  - apt-get install zip
+  
   - init 
   
   # compile in release mode (uglified and minified)
