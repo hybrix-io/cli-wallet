@@ -1,10 +1,15 @@
 #!/bin/sh
 OLDPATH="$PATH"
-REALPATH="`realpath $0`"
-WHEREAMI="`dirname $REALPATH`"
-LIBRARIES="`cd \"$WHEREAMI/lib\" && pwd`"
+WHEREAMI="`pwd`"
+
+# $HYBRIXD/node/scripts/npm  => $HYBRIXD
+SCRIPTDIR="`dirname \"$0\"`"
+CLI_WALLET="`cd \"$SCRIPTDIR\" && pwd`"
+
+LIBRARIES="$CLI_WALLET/lib"
 NODEINST="`which node`"
-export PATH="$WHEREAMI/node_binaries/bin:$PATH"
+
+export PATH="$CLI_WALLET/node_binaries/bin:$PATH"
 
 if [ -z "$1" ]; then
   echo ""
@@ -16,9 +21,9 @@ if [ -z "$1" ]; then
   exit 0
 fi
 
-cd "$WHEREAMI" 2>&1 > /dev/null
+cd "$CLI_WALLET" 2>&1 > /dev/null
 
-  node $LIBRARIES/cli-wallet.js $@
+  node "$LIBRARIES/cli-wallet.js" $@
 
 export PATH="$OLDPATH"
-cd - 2>&1 > /dev/null
+cd "$WHEREAMI"

@@ -18,6 +18,8 @@ echo "[.] Creating cli-wallet release..."
 
 # Create path if required, clean otherwise
 mkdir -p "$DIST/storage"
+mkdir -p "$DIST/common"
+
 echo "[.] Cleaning target path"
 rm -rfv "$DIST/*" >/dev/null
 
@@ -40,7 +42,14 @@ cp -r "$CLI_WALLET/node_modules/" "$DIST/"
 cp -r "$CLI_WALLET/lib/" "$DIST/"
 
 # Copy the common directory
-cp -r "$CLI_WALLET/common/" "$DIST/"
+cp -r "$CLI_WALLET/common/crypto/" "$DIST/common/"
+
+# Copy the common directory
+cp -r "$CLI_WALLET/common/node_modules/" "$DIST/common/"
+
+# Copy the common directory
+cp $CLI_WALLET/common/*.js "$DIST/common/"
+cp $CLI_WALLET/common/*.json "$DIST/common/"
 
 # Copy the common directory
 cp -r "$CLI_WALLET/interface/" "$DIST/"
