@@ -34,19 +34,19 @@ cp "$CLI_WALLET/README.md" "$DIST/"
 cp "$CLI_WALLET/package.json" "$DIST/"
 
 # Copy node_modules
-cp -r "$CLI_WALLET/node_modules" "$DIST/"
+cp -r "$CLI_WALLET/node_modules/" "$DIST/"
 
 # Copy the lib contents
-cp -r "$CLI_WALLET/lib" "$DIST/"
+cp -r "$CLI_WALLET/lib/" "$DIST/"
 
 # Copy the common directory
-cp -r "$CLI_WALLET/common" "$DIST/"
+cp -r "$CLI_WALLET/common/" "$DIST/"
 
 # Copy the common directory
-cp -r "$CLI_WALLET/interface" "$DIST/"
+cp -r "$CLI_WALLET/interface/" "$DIST/"
 
 # Copy the docs
-cp -r "$CLI_WALLET/docs" "$DIST/"
+cp -r "$CLI_WALLET/docs/" "$DIST/"
 
 echo "[.] Release created in $DIST/"
 echo "[.] Make sure you have proper node binaries."
