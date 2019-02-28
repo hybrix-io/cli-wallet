@@ -8,10 +8,10 @@ export PATH="$WHEREAMI/node_binaries/bin:$PATH"
 
 if [ -z "$1" ]; then
   echo ""
-  echo "Welcome to Internet of Coins cli-wallet. A command line wallet for"
+  echo "Welcome to the Internet of Coins cli-wallet. A command line wallet for"
   echo "checking balances and performing transactions."
   echo ""
-  echo "Type:  cli-wallet --help  ...to find out how to use the wallet."
+  echo "Type:  cli-wallet --help  ... to find out how to use the wallet."
   echo ""
   exit 0
 fi

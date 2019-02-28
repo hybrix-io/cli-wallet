@@ -11,6 +11,7 @@
     "setup": "sh scripts/npm/setup.sh",
     "diag": "sh scripts/npm/diag.sh",
     "build": "sh scripts/npm/setup.sh",
+    "generate_docs": "node scripts/npm/generate_docs.js",
     "lint": "sh ../common/scripts/lint/lint.sh cli-wallet",
     "start": "sh cli-wallet"
   },
