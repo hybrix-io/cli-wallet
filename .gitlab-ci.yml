@@ -33,11 +33,11 @@ dist:
   script:
   # install the packages that we need
   - apt-get update
-  - apt-get install curl
-  - apt-get install git
-  - apt-get install tar
-  - apt-get install xz
-  - apt-get install zip
+  - apt-get -y install curl
+  - apt-get -y install git
+  - apt-get -y install tar
+  - apt-get -y install xz
+  - apt-get -y install zip
   
   - init 
   
