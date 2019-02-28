@@ -44,7 +44,9 @@ dist:
   - file=hybrixd.${component}.${version}
   - path=cli-wallet/${version}/
   
-  - cp -r ./dist/. /tmp/${component}/
+  - ls 
+  #- cp -r ./dist/. /tmp/${component}/
+  - cp -r . /tmp/${component}/
     
   - cd /tmp
   - git clone --depth=1 https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist
@@ -83,9 +85,9 @@ dist:
   - "git commit -m \"release ${version} ${component}\" || true"
   - "git push https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist -f || true"
 
-  only:
-    refs:
-      - tags
+  #only:
+    #refs:
+      #- tags
   ##- /^v.*release$/
 
 # ---------------------------------------------------------------------------
