@@ -51,11 +51,11 @@ cp -r "$CLI_WALLET/common/node_modules" "$DIST/common/"
 cp $CLI_WALLET/common/*.js "$DIST/common/"
 cp $CLI_WALLET/common/*.json "$DIST/common/"
 
-# Copy the common directory
+# Copy the interface directory
 cp -r "$CLI_WALLET/interface" "$DIST/"
 
 # Copy the docs
-cp -r "$CLI_WALLET/docs" "$DIST/"
+cp -r "$CLI_WALLET/docs" "$DIST/docs/"
 
 echo "[.] Release created in $DIST/"
 echo "[.] Make sure you have proper node binaries."
