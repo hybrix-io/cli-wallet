@@ -80,6 +80,8 @@ if [ ! -e "$CLI_WALLET/interface" ];then
     ln -sf "$INTERFACE/dist" "$CLI_WALLET/interface"
 fi
 
+# GIT HOOKS
+sh "$COMMON/hooks/hooks.sh" "$CLI_WALLET"
 
 export PATH="$OLDPATH"
 cd "$WHEREAMI"

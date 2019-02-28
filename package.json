@@ -1,6 +1,6 @@
 {
   "name": "cli-wallet",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "command line wallet for hybrixd",
   "main": "lib/cli-wallet.js",
   "directories": {
@@ -11,8 +11,9 @@
     "setup": "sh scripts/npm/setup.sh",
     "diag": "sh scripts/npm/diag.sh",
     "build": "sh scripts/npm/setup.sh",
-    "start": "sh cli-wallet",
-    "generate_docs": "node scripts/npm/generate_docs.js"
+    "generate_docs": "node scripts/npm/generate_docs.js",
+    "lint": "sh ../common/scripts/lint/lint.sh cli-wallet",
+    "start": "sh cli-wallet"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,7 @@
   "dependencies": {
     "blessed": "^0.1.81",
     "clipboardy": "^1.2.3"
+  },
+  "devDependencies": {
   }
 }
