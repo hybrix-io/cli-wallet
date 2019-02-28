@@ -40,7 +40,7 @@ dist:
   # set variables
   # version -> branchname without '-release'
   - version=${CI_COMMIT_REF_NAME/-release/}
-  - component=interface
+  - component=cli-wallet
   - file=hybrixd.${component}.${version}
   - path=interface/${version}/
   
@@ -48,7 +48,7 @@ dist:
     
   - cd /tmp
   - git clone --depth=1 https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist
-  - mkdir -p ./dist/interface/${version}/
+  - mkdir -p ./dist/cli-wallet/${version}/
   
   # download [interface] artifact
   #- "curl --location --header \"JOB-TOKEN: $CI_JOB_TOKEN\" \"https://gitlab.com/api/v4/projects/hybrix%2Fhybrixd%2Finterface/jobs/artifacts/${CI_COMMIT_REF_NAME}/download?job=interface\" -o ${path}${file}.zip"
@@ -111,7 +111,17 @@ dist:
     
     # remove link to common and unzip the downloaded artifact to the directory (|| true --> on error, no problem)
     rm -rf  common || true
-    unzip -o artifacts-common.zip -d common
+    unzip -q -o artifacts-common.zip -d common
+    
+    # remove the zip-file (|| true --> on error, no problem)
+    rm -rf  artifacts-common.zip || true
+    
+    # download interface repo
+    curl --location --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/hybrix%2Fhybrixd%2Finterface/jobs/artifacts/master/download?job=interface" -o artifacts-interface.zip
+    
+    # remove link to common and unzip the downloaded artifact to the directory (|| true --> on error, no problem)
+    rm -rf  interface || true
+    unzip -q -o artifacts-interface.zip -d common
     
     # remove the zip-file (|| true --> on error, no problem)
     rm -rf  artifacts-common.zip || true
