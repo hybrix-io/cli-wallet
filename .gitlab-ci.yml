@@ -119,12 +119,12 @@ dist:
     # download interface repo
     curl --location --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/hybrix%2Fhybrixd%2Finterface/jobs/artifacts/master/download?job=interface" -o artifacts-interface.zip
     
-    # remove link to common and unzip the downloaded artifact to the directory (|| true --> on error, no problem)
+    # remove link to interface and unzip the downloaded artifact to the directory (|| true --> on error, no problem)
     rm -rf  interface || true
-    unzip -q -o artifacts-interface.zip -d common
+    unzip -q -o artifacts-interface.zip -d interface
     
     # remove the zip-file (|| true --> on error, no problem)
-    rm -rf  artifacts-common.zip || true
+    rm -rf  artifacts-interface.zip || true
     
     # remove symbolic link to node
     rm -rf  node || true
