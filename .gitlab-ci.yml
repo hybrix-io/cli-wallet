@@ -39,6 +39,13 @@ dist:
    
   - init 
   
+  # compile in release mode (uglified and minified)
+  - ./scripts/npm/compile.sh
+    
+  # extract dist
+  - shopt -s extglob
+  - rm -rf !(dist) || true
+  - dist
   
   # set variables
   # version -> branchname without '-release'
@@ -48,8 +55,8 @@ dist:
   - path=cli-wallet/${version}/
   
   - ls 
-  #- cp -r ./dist/. /tmp/${component}/
-  - cp -r . /tmp/${component}/
+  - cp -r ./dist/. /tmp/${component}/
+  #- cp -r . /tmp/${component}/
     
   - cd /tmp
   - git clone --depth=1 https://oauth2:${PRIVATE_TOKEN}@gitlab.com/hybrix/dist
