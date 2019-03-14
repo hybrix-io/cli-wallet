@@ -17,7 +17,7 @@ function makeProgressBar(title) {
 
 // command line options and init
 var ops = stdio.getopt({
-  'hostname': {key: 'h', args: 1, description: 'The hostname to use. Default: http://127.0.0.1:1111/'},
+  'hostname': {key: 'h', args: 1, description: 'The hostname to use. Default: http://127.0.0.1:1111/ alternative: https://api.hybrix.io/'},
   'API': {key: 'A', args: 1, description: 'Perform an API call [argument: API_path]'},
   'userid': {key: 'u', args: 1, description: 'Set username'},
   'passwd': {key: 'p', args: 1, description: 'Set password'},

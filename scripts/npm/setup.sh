@@ -25,8 +25,6 @@ else
     exit 1;
 fi
 
-
-
 # NODE
 if [ ! -e "$CLI_WALLET/node_binaries" ];then
 

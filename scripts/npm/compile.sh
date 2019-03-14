@@ -28,10 +28,13 @@ cd "$CLI_WALLET"
 
 # Copy the main entrypoint
 cp "$CLI_WALLET/cli-wallet" "$DIST/"
+
 # Copy license
 cp "$CLI_WALLET/LICENSE.md" "$DIST/"
+
 # Copy readme
 cp "$CLI_WALLET/README.md" "$DIST/"
+
 # Copy package.json
 cp "$CLI_WALLET/package.json" "$DIST/"
 
