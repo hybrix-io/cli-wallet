@@ -16,6 +16,7 @@ module.exports = {
     'camelcase': 1,
     'no-var': 1,
     'no-eval': 0,
-    'object-curly-spacing': 0
+    'object-curly-spacing': 0,
+    'new-cap': 0
   }
 };
