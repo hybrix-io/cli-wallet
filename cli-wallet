@@ -7,6 +7,8 @@ SCRIPTDIR="`dirname \"$0\"`"
 CLI_WALLET="`cd \"$SCRIPTDIR\" && pwd`"
 
 LIBRARIES="$CLI_WALLET/lib"
+
+export PATH="$CLI_WALLET/node_binaries/bin:$PATH"
 NODEINST="`which node`"
 
 if [ -z "$NODEINST" ]; then
@@ -15,8 +17,6 @@ if [ -z "$NODEINST" ]; then
   echo ""
   exit 1
 fi
-
-export PATH="$CLI_WALLET/node_binaries/bin:$PATH"
 
 if [ -z "$1" ]; then
   echo ""
