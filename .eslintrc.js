@@ -17,6 +17,8 @@ module.exports = {
     'no-var': 1,
     'no-eval': 0,
     'object-curly-spacing': 0,
+    'no-throw-literal': 0,
+    'no-new-func': 0,
     'new-cap': 0
   }
 };
