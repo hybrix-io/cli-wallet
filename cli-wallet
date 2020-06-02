@@ -20,7 +20,7 @@ fi
 
 if [ -z "$1" ]; then
   echo ""
-  echo "Welcome to the Internet of Coins cli-wallet. A command line wallet for"
+  echo "Welcome to the hybrix cli-wallet. A command line wallet for"
   echo "checking balances and performing transactions."
   echo ""
   echo "Type:  cli-wallet --help  ... to find out how to use the wallet."

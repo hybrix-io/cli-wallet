@@ -2,16 +2,12 @@
 OLDPATH="$PATH"
 WHEREAMI="`pwd`"
 export PATH="$WHEREAMI/node_binaries/bin:$PATH"
-NODEINST="`which node`"
-UGLIFY=node_modules/uglify-es/bin/uglifyjs
-CSSMIN=node_modules/cssmin/bin/cssmin
 
 # $HYBRIXD/node/scripts/npm  => $HYBRIXD
 SCRIPTDIR="`dirname \"$0\"`"
 HYBRIXD="`cd \"$SCRIPTDIR/../../..\" && pwd`"
 
 CLI_WALLET="$HYBRIXD/cli-wallet"
-INTERFACE="$HYBRIXD/interface"
 DIST="$CLI_WALLET/dist"
 
 echo "[.] Creating cli-wallet release..."
@@ -51,8 +47,8 @@ cp -r "$CLI_WALLET/common/crypto" "$DIST/common/"
 cp -r "$CLI_WALLET/common/node_modules" "$DIST/common/"
 
 # Copy the common directory
-cp $CLI_WALLET/common/*.js "$DIST/common/"
-cp $CLI_WALLET/common/*.json "$DIST/common/"
+cp "$CLI_WALLET/common/"*.js "$DIST/common/"
+cp "$CLI_WALLET/common/"*.json "$DIST/common/"
 
 # Copy the interface directory
 cp -r "$CLI_WALLET/interface" "$DIST/"
