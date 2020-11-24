@@ -1,11 +1,11 @@
-const {getLogin} = require('../setup');
+const {getLogin} = require('../../lib/setup');
 
 exports.key = 'N';
 exports.args = 3;
 exports.host = 'allocation';
 exports.description = 'Set or create an allocation pair [argument: base] [argument: symbol] [argument: feePercent] [argument: type] [argument: deadline]';
 
-exports.allocationPairSet = (ops) => ([fromBase, toSymbol, feePercent, type, deadline]) => [
+exports.pairSet = (ops) => (fromBase, toSymbol, feePercent, type, deadline) => [
   getLogin(ops, this), 'getLoginKeyPair',
   keys => ({
     sK: {data: keys.secretKey, step: 'id'},

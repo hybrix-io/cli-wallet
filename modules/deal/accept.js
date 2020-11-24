@@ -1,12 +1,12 @@
-const {getLogin} = require('../setup');
+const {getLogin} = require('../../lib/setup');
 
 exports.key = 'Y';
 exports.args = 1;
 exports.host = 'allocation';
 exports.description = 'Accept a deal and send funds [argument: dealID]';
 
-exports.dealAccept = (ops) => ([dealID]) => [
-  {username: ops.userid, password: ops.passwd}, 'session',
+exports.dealAccept = (ops) => (dealID) => [
+  getLogin(ops, {...this, host: ''}), 'session',
   {query: '/e/deal/status/' + dealID}, 'rout'
   /*
   obj => ({
