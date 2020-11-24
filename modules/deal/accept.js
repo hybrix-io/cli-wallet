@@ -11,17 +11,17 @@ exports.accept = (ops) => (dealID) => [
     id: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code'],
     deal: [{query: '/e/deal/status/' + dealID}, 'rout']
   }), 'parallel',
-  obj => ( (obj.deal.status==='open' && obj.deal.progress==0)
+  obj => ((obj.deal.status === 'open' && obj.deal.progress === 0)
     ? [
-        {symbol:obj.deal.ask.symbol, amount:obj.deal.ask.amount, target:obj.deal.ask.target}, 'transaction',
-        txid => (
-          {
-            claim: [{query: '/e/deal/claim/' + dealID + '/' + txid},'rout'],
-            txid: {data: result.txid, step: 'id'}
-          }
-        ), 'parallel',
-        result => (result.txid)
-      ]
-    : [{data:'Deal ' + dealID + ' already has been accepted.'},'string']
+      {symbol: obj.deal.ask.symbol, amount: obj.deal.ask.amount, target: obj.deal.ask.target}, 'transaction',
+      txid => (
+        {
+          claim: [{query: '/e/deal/claim/' + dealID + '/' + txid}, 'rout'],
+          txid: {data: result.txid, step: 'id'}
+        }
+      ), 'parallel',
+      result => (result.txid)
+    ]
+    : [{data: 'Deal ' + dealID + ' already has been accepted.'}, 'string']
   ), 'sequential'
 ];
