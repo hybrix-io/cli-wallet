@@ -1,9 +1,10 @@
-const {getLogin} = require('../setup');
+const {getLogin} = require('../../lib/setup');
+
 exports.key = 'C';
 exports.host = 'allocation';
 exports.description = 'Create new allocation account, returning the ID';
 
-exports.allocationCreate = (ops) => () => [
+exports.create = (ops) => () => [
   getLogin(ops, this), 'getLoginKeyPair',
   keys => ({
     sK: {data: keys.secretKey, step: 'id'},
