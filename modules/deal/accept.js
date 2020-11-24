@@ -5,7 +5,7 @@ exports.args = 1;
 exports.host = 'allocation';
 exports.description = 'Accept a deal and send funds [argument: dealID]';
 
-exports.dealAccept = (ops) => (dealID) => [
+exports.accept = (ops) => (dealID) => [
   getLogin(ops, {...this, host: ''}), 'session',
   {query: '/e/deal/status/' + dealID}, 'rout'
   /*
