@@ -7,12 +7,15 @@ exports.description = 'Create new allocation account, returning the ID';
 exports.create = (ops) => () => [
   getLogin(ops, this), 'getLoginKeyPair',
   keys => ({
-    sK: {data: keys.secretKey, step: 'id'},
-    id: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code']
+    secretKey: {data: keys.secretKey, step: 'id'},
+    accountId: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code']
   }), 'parallel',
   init => ({
     detail: {data: init, step: 'id'},
-    exists: [{query: '/e/allocation/account/exists/' + init.id}, 'rout']
+    exists: [{query: '/e/allocation/account/exists/' + init.accountId}, 'rout']
   }), 'parallel',
-  data => { return data.exists ? [{data: data.detail.id}, 'string'] : [{query: '/e/allocation/account/init/' + data.detail.id + '/' + data.detail.sK}, 'rout']; }, 'sequential'
+  data => data.exists
+    ? [{data: data.detail.accountId}, 'string']
+    : [{query: '/e/allocation/account/init/' + data.detail.accountId + '/' + data.detail.secretKey}, 'rout'],
+  'sequential'
 ];

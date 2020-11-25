@@ -11,8 +11,9 @@ exports.withdraw = (ops) => (symbol, amount) => [
   target => [
     getLogin(ops, this), 'session', // initialize with allocation session
     getLogin(ops, this), 'getLoginKeyPair',
-    keys => ([{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code']), 'sequential',
-    id => ([{query: '/e/allocation/pair/rebalance/' + id + '/' + symbol + '/-' + amount}, 'rout']), 'sequential',
+    keys => ({data: 'account ' + keys.secretKey}), 'hash',
+    hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
+    id => ({query: '/e/allocation/pair/rebalance/' + id + '/' + symbol + '/-' + amount}), 'rout',
     {symbol, amount, target}, 'transaction'
   ], 'sequential'
 ];

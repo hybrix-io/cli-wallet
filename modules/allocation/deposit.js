@@ -7,13 +7,12 @@ exports.description = 'Deposit an amount into an allocation account [argument: s
 
 exports.deposit = (ops) => (symbol, amount) => [
   getLogin(ops, this), 'getLoginKeyPair',
-  keys => ([{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code']), 'sequential',
-  id => ([{query: '/e/allocation/pair/rebalance/' + id + '/' + symbol + '/' + amount}, 'rout']), 'sequential',
+  keys => ({data: 'account ' + keys.secretKey}), 'hash',
+  hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
+  id => ({query: '/e/allocation/pair/rebalance/' + id + '/' + symbol + '/' + amount}), 'rout',
   {symbol}, 'getAddress', // get allocation address
-  target => { // create a transaction from regular session to allocation session
-    return [
-      getLogin(ops, {...this, host: ''}), 'session',
-      {symbol, amount, target}, 'transaction'
-    ];
-  }, 'sequential'
+  target => [ // create a transaction from regular session to allocation session
+    getLogin(ops, {...this, host: ''}), 'session',
+    {symbol, amount, target}, 'transaction'
+  ], 'sequential'
 ];

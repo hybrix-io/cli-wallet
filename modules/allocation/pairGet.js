@@ -7,9 +7,7 @@ exports.description = 'Get details of an allocation pair [argument: base] [argum
 
 exports.pairGet = (ops) => (fromBase, toSymbol) => [
   getLogin(ops, this), 'getLoginKeyPair',
-  keys => ({
-    sK: {data: keys.secretKey, step: 'id'},
-    id: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code']
-  }), 'parallel',
-  data => { return [{query: '/e/allocation/pair/get/' + data.id + '/' + fromBase + '/' + toSymbol}, 'rout']; }, 'sequential'
+  keys => ({data: 'account ' + keys.secretKey}), 'hash',
+  hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
+  accountId => ({query: '/e/allocation/pair/get/' + accountId + '/' + fromBase + '/' + toSymbol}), 'rout'
 ];
