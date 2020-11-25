@@ -5,5 +5,5 @@ exports.description = 'Get the balance of an allocation account [argument: symbo
 
 exports.balance = (ops) => (symbol) => [
   {symbol}, 'getAddress',
-  address => { return {query: '/a/' + symbol + '/balance/' + address}; }, 'rout',  
+  address => { return {query: '/a/' + symbol + '/balance/' + address}; }, 'rout'
 ];
