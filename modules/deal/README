@@ -12,60 +12,59 @@ Engines:
 ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation create
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-26f6K79xSkKFpJ3teVVPmwV6PXLj5jhBmU4XHMaFYegr
+A179AXYuu3EwHxdDNo4wzAxHVuc82Xs374TcdnBsKHAV
 ```
 
 
 2. Now that the allocation has been created, this allocator wants to earn some money. To do so he/she deposits a pair of crypto currencies to the allocation account.
 ```
-./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation deposit tomo 2.233644659888528194
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation deposit mock.btc 100
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-0x291d1de3b9d51c8c03aa0e7c1fa87162b816f6161e6749a8569f072d3a92e718
+8
 ```
 
 
 ```
-./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation deposit tomo.hy 0.728
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation deposit mock.eth 100
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-0x6749a8569f072d3a92e718291d1de3b9d51c8c03aa0e7c1fa87162b816f6161e
+9
 ```
 
 
-3. This user wants to be thorough, so he/she checks the allocation balance of tomo to make sure everything transacted okay.
+3. This user wants to be thorough, so he/she checks the allocation balance to make sure everything transacted okay.
 ```
-./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation balance tomo
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation balance mock.btc
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-2.233644659888528194
+100
 ```
-
 
 4. The pair needs to be listed so others can swap with it. This can be one-way or two-way.
 
-a) First create the ability to swap from tomo to tomo.hy, and propose a static fee of 0.3 percent of the output amount per swap, excluding network transaction fees.
+a) First create the ability to swap from mock.eth to mock.btc, and propose a static fee of 0.3 percent of the output amount per swap, excluding network transaction fees.
 ```
-./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet tomo tomo.hy 0.3
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet mock.eth mock.btc 0.3
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-{"active":true,"rx":"tomo","tx":"tomo.hy","balance":"0.728000000000000000","fee":"0.3","type":"autonomous","deadline":3600}
+{"active":true,"rx":"mock.eth","tx":"mock.btc","fee":"0.3","type":"autonomous","deadline":36000,"balance":"100"}
 ```
 
 b) Secondly create a swap from tomo.hy back to tomo. In this case the user wants more fee, so sets 0.4 percent per swap.
 ```
-./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet tomo.hy tomo 0.4
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet mock.btc mock.eth 0.3
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-{"active":true,"rx":"tomo.hy","tx":"tomo","balance":"2.233644659888528194","fee":"0.4","type":"autonomous","deadline":3600}
+ {"active":true,"rx":"mock.btc","tx":"mock.eth","fee":"0.4","type":"autonomous","deadline":36000,"balance":"100"}
 ```
 
 c) The available balance in both responses is the maximum amount of transmittable output currency of the pair. Mirror pairs like the two potential deals above are automatically double-balance accounted. This means that a swap will deduct from one balance, and add to the other, without needing to reference the blockchain each time as the mempools are often too slow, and will only reflect the correct balances later.
 
 
-5. Another user wants to swap some of his/her tomo.hy for tomo. Doesn't like GUI's so does it from the command line. First user calculates what this could cost in theory. For the swap he/she requests a proposal from the allocation pool. Our allocator's pair pops up with a proposal.
+5. Another user wants to swap some of his/her mock.btc for mock.eth. Doesn't like GUI's so does it from the command line. First user calculates what this could cost in theory. For the swap he/she requests a proposal from the allocation pool. Our allocator's pair pops up with a proposal.
 ```
- ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M deal proposal tomo.hy tomo 0.1
+ ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M deal proposal mock.btc mock.eth 10
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
 {"id":"341d602e0bae5a60","ask":{"symbol":"tomo.hy","amount":"0.144479359219266753","target":"0xa7c2e624e1c477d3fe2a4127564a3c980b1fca58","txid":null},"bid":{"symbol":"tomo","amount":"0.1","target":"0xfd9eb537df909144f14084d75fa88142bc80eb57","txid":null},"fees":{"symbol":"tomo.hy","allocator":"0.000575534723123336","network":"0.000020143715309316774"},"type":"autonomous","deadline":"1606255996","status":"open"}
@@ -99,7 +98,7 @@ Deal status:
 ```
 ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M deal status 341d602e0bae5a60
 
-{"id":"341d602e0bae5a60","ask":{"symbol":"tomo.hy","amount":"0.144479359219266753","target":"0xa7c2e624e1c477d3fe2a4127564a3c980b1fca58","txid":"0xf1e2d3c4b5..."},"bid":{"symbol":"tomo","amount":"0.1","target":"0xfd9eb537df909144f14084d75fa88142bc80eb57","txid":"0xa6b7c8d9e0..."},"fees":{"symbol":"tomo.hy","allocator":"0.000575534723123336","network":"0.000020143715309316774"},"type":"autonomous","deadline":"1606255996","status":"done"}
+{"id":"341d602e0bae5a60","ask":{"symbol":"mock.btc","amount":"0.144479359219266753","target":"0xa7c2e624e1c477d3fe2a4127564a3c980b1fca58","txid":"0xf1e2d3c4b5..."},"bid":{"symbol":"tomo","amount":"0.1","target":"0xfd9eb537df909144f14084d75fa88142bc80eb57","txid":"0xa6b7c8d9e0..."},"fees":{"symbol":"tomo.hy","allocator":"0.000575534723123336","network":"0.000020143715309316774"},"type":"autonomous","deadline":"1606255996","status":"done"}
 ```
 
 Wow! It looks like the deal was done within one minute. User is very happy. All is calm, all is bright. ;-)

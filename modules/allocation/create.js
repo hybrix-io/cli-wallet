@@ -15,7 +15,7 @@ exports.create = (ops) => () => [
     exists: [{query: '/e/allocation/account/exists/' + init.accountId}, 'rout']
   }), 'parallel',
   data => data.exists
-    ? [{data: data.detail.accountId}, 'string']
+    ? [() => data.detail.accountId]
     : [{query: '/e/allocation/account/init/' + data.detail.accountId + '/' + data.detail.secretKey}, 'rout'],
   'sequential'
 ];
