@@ -10,4 +10,3 @@ exports.securityDetails = (ops) => () => [
   hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
   id => ({query: '/e/allocation/account/securityReserve/' + id + '/balance'}), 'rout'
 ];
-

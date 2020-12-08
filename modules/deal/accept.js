@@ -21,6 +21,6 @@ exports.accept = (ops) => (dealID) => [
       ), 'parallel',
       result => (result.txid)
     ]
-    : [() => 'Deal ' + dealID + ' already has been accepted.']
+    : [() => 'Deal ' + dealID + ' has ' + obj.deal.status + ' status. Acceptance request denied.']
   ), 'sequential'
 ];

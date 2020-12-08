@@ -10,4 +10,3 @@ exports.securityDeposit = (ops) => (amount) => [
   hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
   id => ({query: '/e/allocation/account/securityReserve/' + id + '/deposit/' + amount}), 'rout'
 ];
-
