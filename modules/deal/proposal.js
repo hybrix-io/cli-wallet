@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'X';
 exports.args = 3;
 exports.host = 'allocation';
 exports.description = 'Prepare for a deal by requesting a proposal [argument: base] [argument: symbol] [argument: target_amount]';

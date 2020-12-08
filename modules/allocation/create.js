@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'C';
 exports.host = 'allocation';
 exports.description = 'Create new allocation account, returning the ID';
 

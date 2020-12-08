@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'D';
 exports.args = 2;
 exports.host = 'allocation';
 exports.description = 'Deposit an amount into an allocation account [argument: symbol] [argument: amount]';

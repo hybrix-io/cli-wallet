@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'M';
 exports.args = 2;
 exports.host = 'allocation';
 exports.description = 'Get details of an allocation pair [argument: base] [argument: symbol]';

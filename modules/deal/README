@@ -48,7 +48,7 @@ a) First create the ability to swap from mock.eth to mock.btc, and propose a sta
 ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet mock.eth mock.btc 0.3
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
-{"active":true,"rx":"mock.eth","tx":"mock.btc","fee":"0.3","type":"autonomous","deadline":36000,"balance":"100"}
+{"active":true,"rx":"mock.eth","tx":"mock.btc","fee":"0.3","type":"autonomous","deadline":36000,"balance":"100","sufficiency":"0"}
 ```
 
 b) Secondly create a swap from tomo.hy back to tomo. In this case the user wants more fee, so sets 0.4 percent per swap.
@@ -56,10 +56,26 @@ b) Secondly create a swap from tomo.hy back to tomo. In this case the user wants
 ./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation pairSet mock.btc mock.eth 0.3
  [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
 
- {"active":true,"rx":"mock.btc","tx":"mock.eth","fee":"0.4","type":"autonomous","deadline":36000,"balance":"100"}
+ {"active":true,"rx":"mock.btc","tx":"mock.eth","fee":"0.4","type":"autonomous","deadline":36000,"balance":"100","sufficiency":"0"}
 ```
 
 c) The available balance in both responses is the maximum amount of transmittable output currency of the pair. Mirror pairs like the two potential deals above are automatically double-balance accounted. This means that a swap will deduct from one balance, and add to the other, without needing to reference the blockchain each time as the mempools are often too slow, and will only reflect the correct balances later.
+
+d) To be allowed to allocate, TOMO.HY must be deposited and then sent to a security reserve.
+```
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation deposit tomo.hy 12
+ [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
+
+0x1a2b3c3d5e6f...
+```
+
+e) Now instruct the alloctor node to reserve an amount as a security deposit. The deposit will be taken from the required symbol (TOMO.HY) and set apart.
+```
+./cli-wallet -u DUMMYDUMMYDUMMY0 -p DUMMYDUMMYDUMMY0 -M allocation securityDeposit 7
+ [.] module: [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%, eta: 0.0s
+
+{"action":"deposit","balance":6.965,"deposited":6.965,"fee":0.035,"txid":"0xd9c4c6b353c591bbcc400def4a4226db8912a9db0c38309975d59919232fd31e"}
+```
 
 
 5. Another user wants to swap some of his/her mock.btc for mock.eth. Doesn't like GUI's so does it from the command line. First user calculates what this could cost in theory. For the swap he/she requests a proposal from the allocation pool. Our allocator's pair pops up with a proposal.

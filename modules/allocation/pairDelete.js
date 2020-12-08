@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'M';
 exports.args = 2;
 exports.host = 'allocation';
 exports.description = 'Delete an allocation pair, making it unavailable [argument: base] [argument: symbol]';

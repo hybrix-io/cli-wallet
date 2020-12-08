@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'W';
 exports.host = 'allocation';
 exports.args = 2;
 exports.description = 'Withdraw an amount from an allocation account [argument: symbol] [argument: amount]';

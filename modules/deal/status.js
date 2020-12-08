@@ -1,6 +1,5 @@
 const {getLogin} = require('../../lib/setup');
 
-exports.key = 'Z';
 exports.args = 1;
 exports.host = 'allocation';
 exports.description = 'Check the status of a deal [argument: dealID]';
