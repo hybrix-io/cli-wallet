@@ -5,6 +5,15 @@ Engines:
  - allocation: Manages allocation accounts, which are subset keys of a user's main account. These keys are shared to the node to be able to send payments on the user's behalf in response to deals. The user also retains full controls over these keys, making it a non-custodial solution with a third-party security caveat. This caveat will be solved using a reputation and security deposit engine and a dispute engine to make sure allocators and allocation nodes play by the rules.
  - deal: Creates swap proposals for end-users wanting to swap using allocation funds. These proposals can then be accepted, thus the swap exchange is autonomously done, or as automatically as possible.
 
+ 0. Initialize some mock funds for testing:
+
+ ```
+ ./cli-wallet --api /e/mockchain/mine/btc/638/100
+ ./cli-wallet --api /e/mockchain/mine/eth/638/100
+ ```
+
+ This will create 100 mock.eth and 100 mock.btc on address 638.
+
 
 1. The cli-wallet can utilize the useful functions of the allocation and deal engine using modules. We start by creating an allocation account, which is then also stored encrypted on the allocator node. An allocator ID is returned which the user can use to perform manual queries using the hybrix API.
 
