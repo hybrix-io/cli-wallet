@@ -8,7 +8,8 @@ exports.description = 'Create new allocation account, returning the ID';
 const checkEULA = ops => () => {
   let answer;
   if (fs.existsSync('./modules/allocation/.EULA.consent')) {
-    console.log('[i] EULA has been previously agreed to.');
+    answer = 'y';
+    if (ops.verbose) console.log('[i] EULA has been previously agreed to.');
   } else if (ops.yes) {
     answer = 'y';
     if (ops.verbose) console.log('[i] Automatically consented to EULA.');
