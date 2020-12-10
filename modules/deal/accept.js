@@ -16,7 +16,7 @@ exports.accept = (ops) => (dealID) => [
       txid => (
         {
           claim: [{query: '/e/deal/claim/' + dealID + '/' + txid}, 'rout'],
-          txid: {data: result.txid, step: 'id'}
+          txid: {data: txid, step: 'id'}
         }
       ), 'parallel',
       result => (result.txid)
