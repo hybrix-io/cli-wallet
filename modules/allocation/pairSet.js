@@ -15,7 +15,7 @@ exports.pairSet = (ops) => (fromBase, toSymbol, feePercent, type, deadline) => {
       accountId = id;
       return {query: '/e/allocation/account/securityReserve/' + id + '/details'};
     }, 'rout',
-    details => ({condition: details.balace >= MINIMAL_DEPOSIT, message: `A minimal security deposit of ${MINIMAL_DEPOSIT} ${details.symbol.toUpperCase()} is required to setup this pair, currently only ${details.balance} ${details.symbol.toUpperCase()} is available.`}), 'assert',
+    details => ({condition: details.balance >= MINIMAL_DEPOSIT, message: `A minimal security deposit of ${MINIMAL_DEPOSIT} ${details.symbol.toUpperCase()} is required to setup this pair, currently only ${details.balance} ${details.symbol.toUpperCase()} is available.`}), 'assert',
     () => ({query: '/e/allocation/pair/set/' + accountId + '/' + fromBase + '/' + toSymbol + '/' + feePercent + '/' + type + '/' + deadline}), 'rout'
   ];
 };
