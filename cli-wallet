@@ -30,6 +30,11 @@ fi
 
 cd "$CLI_WALLET" 2>&1 > /dev/null
 node --no-warnings "$LIBRARIES/cli-wallet.js" $@
-
-export PATH="$OLDPATH"
-cd "$WHEREAMI"
+if [ $? -eq 0 ]; then
+  export PATH="$OLDPATH"
+  cd "$WHEREAMI"
+else
+  export PATH="$OLDPATH"
+  cd "$WHEREAMI"
+  exit 1
+fi
