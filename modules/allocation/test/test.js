@@ -30,7 +30,7 @@ hybrix.sequential([
   {query: `/e/mockchain/reset`}, 'rout',
   // TODO find allocation -> should fail (because no funds)
   // TODO create allocation -> should fail (because no funds)
-  () => logger(`Inialize mock funds.`),
+  () => logger(`Initialize mock funds.`),
   {query: `/e/mockchain/mine/eth/${ADDRESS}/${START_BALANCE}`}, 'rout',
   {query: `/e/mockchain/mine/btc/${ADDRESS}/${START_BALANCE}`}, 'rout',
   // check balances
@@ -52,7 +52,7 @@ hybrix.sequential([
   () => logger('Check balance'),
   {func: cliWallet, data: `--module allocation balance ${SECURITY_SYMBOL}`}, 'call',
 
-  balance => ({condition: Number(balance) === DEFAULT_DEPOSIT + EXTRA_DEPOSIT - EXTRA_WITHDRAW, message: `Invalid ${SECURITY_SYMBOL} allocation balance`, balance}), 'assert',
+  balance => ({condition: Number(balance) === DEFAULT_DEPOSIT + EXTRA_DEPOSIT - EXTRA_WITHDRAW, message: `Invalid ${SECURITY_SYMBOL} allocation balance. Expected: ${DEFAULT_DEPOSIT + EXTRA_DEPOSIT - EXTRA_WITHDRAW}, got ${balance}`, balance}), 'assert',
   ({balance}) => logger(`${balance} ${SECURITY_SYMBOL.toUpperCase()} available.`),
 
   // TODO try to set pair, should fail
