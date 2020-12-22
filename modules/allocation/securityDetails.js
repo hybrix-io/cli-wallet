@@ -1,12 +1,10 @@
-const {getLogin} = require('../../lib/setup');
+const {getSignatureSteps} = require('./pairDelete');
 
 exports.args = 0;
 exports.host = 'allocation';
 exports.description = 'Get the details of the security reserve';
 
 exports.securityDetails = (ops) => () => [
-  getLogin(ops, this), 'getLoginKeyPair',
-  keys => ({data: 'account ' + keys.secretKey}), 'hash',
-  hash => ({data: hash, source: 'hex', target: 'base58'}), 'code',
-  id => ({query: '/e/allocation/account/securityReserve/' + id + '/details'}), 'rout'
+  ...getSignatureSteps(ops, this, 'securityReserveAccount', ['details']),
+  ({accountID, signature}) => ({query: '/e/allocation/account/securityReserve/' + accountID + '/details/' + signature}), 'rout'
 ];
