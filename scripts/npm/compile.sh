@@ -40,6 +40,9 @@ cp -r "$CLI_WALLET/node_modules" "$DIST/"
 # Copy the lib contents
 cp -r "$CLI_WALLET/lib" "$DIST/"
 
+# Copy the modules contents
+cp -r "$CLI_WALLET/modules" "$DIST/"
+
 # Copy the common directory
 cp -r "$CLI_WALLET/common/crypto" "$DIST/common/"
 
