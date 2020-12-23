@@ -28,8 +28,14 @@ const checkEULA = ops => () => {
   return {condition: answer === 'y', message: 'Could not continue without EULA approval.'};
 };
 exports.create = (ops) => (amount) => {
-  let securitySymbol;
-  amount = typeof amount === 'undefined' ? MINIMAL_DEPOSIT : amount;
+  let securitySymbol, SYMBOL;
+  let availableMainBalance;
+  let availableAllocationBalance;
+  if (typeof amount === 'undefined') amount = MINIMAL_DEPOSIT;
+  if (isNaN(amount)) {
+    return [{condition: false, message: `Expected numerical deposit, got '${amount}'`}, 'assert'];
+  }
+
   return [
     checkEULA(ops), 'assert',
     getLogin(ops, this), 'getLoginKeyPair',
@@ -45,12 +51,44 @@ exports.create = (ops) => (amount) => {
       ? [() => 'Account ' + data.detail.accountId + ' has already been initialized.']
       : [
         getLogin(ops, {...this, host: ''}), 'session',
+
+        // Retrieve the security symbol
         {query: '/e/allocation/security-symbol'}, 'rout',
-        symbol => { securitySymbol = symbol; return {symbol, available: true}; }, 'getBalance',
-        balance => ({condition: Number(balance) >= MINIMAL_DEPOSIT, message: `A minimal available balance of ${MINIMAL_DEPOSIT} ${securitySymbol.toUpperCase()} is required, currently only ${balance} ${securitySymbol.toUpperCase()} is available.`}), 'assert',
+
+        // Retrieve available balances
+        symbol => {
+          securitySymbol = symbol;
+          SYMBOL = securitySymbol.toUpperCase();
+          return {symbol};
+        }, 'getBalance',
+        balance => {
+          availableMainBalance = Number(balance);
+        },
+
+        getLogin(ops, this), 'session',
+        () => ({symbol: securitySymbol}), 'getBalance',
+        balance => {
+          availableAllocationBalance = Number(balance);
+        },
+
+        // Check balances
+        () => ({
+          condition: availableMainBalance + availableAllocationBalance >= MINIMAL_DEPOSIT,
+          message: `A minimal available balance of ${MINIMAL_DEPOSIT} ${SYMBOL} is required,
+currently only ${availableMainBalance + availableAllocationBalance} ${SYMBOL} is available.
+(Main balance is ${availableMainBalance} ${SYMBOL}, allocation balance is ${availableAllocationBalance} ${SYMBOL}) `
+        }), 'assert',
+
         {query: '/e/allocation/account/init/' + data.detail.accountId + '/' + data.detail.secretKey, chan: 'y'}, 'rout',
-        () => [getLogin(ops, this), 'session', ...deposit(ops)(securitySymbol, amount)], 'sequential',
-        () => `Account ${data.detail.accountId} has been created. An initial deposit of ${amount} ${securitySymbol.toUpperCase()} has been made. Please note that an additional step has to be made to deposit this as a security before swaps can be made.`
+
+        // Regiser existing balance
+        // ({accountID, signature}) => ({query: '/e/allocation/pair/rebalance/' + accountID + '/' + symbol + '/' + amount + '/' + signature}), 'rout',
+
+        // Finalize
+        () => `Account ${data.detail.accountId} has been created.
+The main balance is       ${availableMainBalance} ${SYMBOL}.
+The allocation balance is ${availableAllocationBalance} ${SYMBOL}.
+Please note that an additional step has to be made to deposit a minimum of ${MINIMAL_DEPOSIT} ${SYMBOL} as a security before swaps can be made.`
       ],
     'sequential'
   ];
