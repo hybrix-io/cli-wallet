@@ -1,10 +1,9 @@
-const {getLogin} = require('../../lib/setup');
 
-exports.args = 1;
+exports.args = 0;
 exports.host = 'allocation';
 exports.description = 'Show the available pairs';
+exports.requireLogin = false;
 
-exports.status = (ops) => (dealID) => [
-  getLogin(ops, {...this, host: ''}), 'session',
-  {query: '/e/deal/pairs'}, 'rout'
+exports.pairs = (ops) => () => [
+  {query: '/e/allocation/pair/list'}, 'rout'
 ];
