@@ -1,8 +1,19 @@
-All your funds are belong to us.
 
-This is a test
+END-USER LICENSE AGREEMENT
 
-Do you agree to give to us
-- all your moneys
-- all your candy
-- your firstborn child
+By using this digital platform you agree to the terms of the hybrix
+End User License Agreement (EULA). Before you continue, please read the
+text of the agreement in file EULA_hybrix.md in the root of the
+cli-wallet program directory. 
+
+You hereby permit the hybrix and cli-wallet application to spend
+coins, currency, cryptocurrency and/or tokens on your behalf.
+
+IMPORTANT: hybrix WILL NOT BE LIABLE FOR ANY DAMAGES OF ANY KIND
+ARISING OUT OF OR RELATING TO THE USE OR THE INABILITY TO USE THE
+AFORESAID DIGITAL PLATFORM OR ANY THIRD-PARTY APPLICATION, ITS CONTENT
+OR FUNCTIONALITY, INCLUDING BUT NOT LIMITED TO DAMAGES CAUSED BY OR
+RELATED TO ERRORS, OMISSIONS, INTERRUPTIONS, DEFECTS, DELAY IN
+OPERATION OR TRANSMISSION, COMPUTER VIRUS, FAILURE TO CONNECT, NETWORK
+CHARGES, IN-APPLICATION PURCHASES, AND ALL OTHER DIRECT, INDIRECT,
+SPECIAL, INCIDENTAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES.

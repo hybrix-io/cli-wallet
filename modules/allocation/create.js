@@ -18,7 +18,7 @@ const checkEULA = ops => () => {
   } else {
     console.log(fs.readFileSync('./modules/allocation/EULA.md').toString());
     while (answer !== 'y' && answer !== 'n') {
-      answer = readlineSync.question('Do you agree [y/n]: ');
+      answer = readlineSync.question('Do you agree? [y/n]: ');
     }
   }
   if (answer === 'y') { // write consent to file
@@ -27,6 +27,7 @@ const checkEULA = ops => () => {
   }
   return {condition: answer === 'y', message: 'Could not continue without EULA approval.'};
 };
+
 exports.create = (ops) => (amount) => {
   let securitySymbol, SYMBOL;
   let availableMainBalance;
