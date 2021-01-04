@@ -12,8 +12,9 @@ const EXTRA_DEPOSIT = 30;
 const EXTRA_WITHDRAW = 10;
 const SECURITY_DEPOSIT = 20;
 const SECURITY_WITHDRAW = 5;
-function logger (text) {
+function logger (text, data) {
   console.log('[.] ', text);
+  return data;
 }
 
 function errorCallback (error) {
@@ -44,7 +45,9 @@ hybrix.sequential([
   // create allocation
   () => logger('Create allocation.'),
 
-  {func: cliWallet, data: '--yes --module allocation create'}, 'call', // default of 10
+  {func: cliWallet, data: '--yes --module allocation create'}, 'call',
+  () => logger('Deposit default funds'),
+  {func: cliWallet, data: `--module allocation deposit ${SECURITY_SYMBOL} ${DEFAULT_DEPOSIT}`}, 'call',
   () => logger('Deposit more funds'),
   {func: cliWallet, data: `--module allocation deposit ${SECURITY_SYMBOL} ${EXTRA_DEPOSIT}`}, 'call',
   () => logger('Withdraw some funds'),
@@ -70,10 +73,17 @@ hybrix.sequential([
   () => logger('Set pair'),
   {func: cliWallet, data: '--module allocation pairSet mock.btc mock.eth 0.3'}, 'call',
   () => logger('Get pair'),
-  {func: cliWallet, data: '--module allocation pairGet mock.btc mock.eth'}, 'call'
+  {func: cliWallet, data: '--module allocation pairGet mock.btc mock.eth'}, 'call',
   // TODO check amount, balance should be 15 = DEFAULT_DEPOSIT + EXTRA_DEPOSIT - EXTRA_WITHDRAW - SECURITY_DEPOSIT + SECURITY_WITHDRAW
   // TODO  pair delete
   // TODO  get pair -> should fail */
+  () => logger('Get proposal'),
+  {func: cliWallet, data: '--module deal proposal mock.btc mock.eth 2'}, 'call',
+  proposal => {
+    proposal = JSON.parse(proposal);
+    return logger('Accept proposal ' + proposal.id, proposal);
+  },
+  proposal => ({func: cliWallet, data: `--module deal accept ${proposal.id}`}), 'call'
 
 ], data => {
   console.log('[v] Done');
