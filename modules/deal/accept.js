@@ -10,17 +10,25 @@ exports.accept = (ops) => (dealID) => [
     id: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code'],
     deal: [{query: '/e/deal/status/' + dealID}, 'rout']
   }), 'parallel',
-  obj => ((obj.deal.status === 'open' && Number(obj.deal.progress) === 0)
-    ? [
-      {symbol: obj.deal.ask.symbol, amount: obj.deal.ask.amount, target: obj.deal.ask.target}, 'transaction',
-      txid => (
-        {
-          claim: [{query: '/e/deal/claim/' + dealID + '/' + txid}, 'rout'],
-          txid: {data: txid, step: 'id'}
-        }
-      ), 'parallel',
-      result => (result.txid)
-    ]
-    : [() => 'Deal ' + dealID + ' has ' + obj.deal.status + ' status. Acceptance request denied.']
-  ), 'sequential'
+  proposal => {
+    if (typeof proposal !== 'object' || proposal === null) {
+      return [{condition: false, message: 'Failed to process request to accept deal ' + dealID + '.'}, 'assert'];
+    } else if (typeof proposal.deal !== 'object' || proposal.deal === null) {
+      return [{condition: false, message: 'Deal ' + dealID + ' could not be found.'}, 'assert'];
+    } else if (proposal.deal.status === 'open' && Number(proposal.deal.progress) === 0) { // claim
+      return [
+        {symbol: proposal.deal.ask.symbol, amount: proposal.deal.ask.amount, target: proposal.deal.ask.target}, 'transaction',
+        txid => (
+          {
+            claim: [{query: '/e/deal/claim/' + dealID + '/' + txid}, 'rout'],
+            txid: {data: txid, step: 'id'}
+          }
+        ), 'parallel',
+        result => result.txid
+      ];
+    } else {
+      return [{condition: false, message: 'Deal ' + dealID + ' has ' + proposal.deal.status + ' status. Acceptance request denied.'}, 'assert'];
+    }
+  },
+  'sequential'
 ];
