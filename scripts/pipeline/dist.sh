@@ -39,7 +39,7 @@ rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.zip" "$RELEASE_TARGET/cli
 rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.tar.gz" "$RELEASE_TARGET/cli-wallet/latest/$LATEST_FILE_NAME.tar.gz"
 
 echo "[.] Copying to version folder"
-rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.zip" "$RELEASE_TARGET/cli-wallet/$VERSION/$FILE_NAME.zip"
+rsync -ra --rsync-path="mkdir -p $RELEASE_DIR/cli-wallet/$VERSION/ && rsync"  --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.zip" "$RELEASE_TARGET/cli-wallet/$VERSION/$FILE_NAME.zip"
 rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.tar.gz" "$RELEASE_TARGET/cli-wallet/$VERSION/$FILE_NAME.tar.gz"
 
 export PATH="$OLDPATH"
