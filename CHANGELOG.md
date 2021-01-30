@@ -1,3 +1,11 @@
+# v0.6.1
+## 30-01-2021
+
+* Improve deal accept feedback
+
+
+
+
 # v0.6.0
 ## 25-12-2020
 
