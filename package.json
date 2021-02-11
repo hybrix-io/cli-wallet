@@ -11,6 +11,7 @@
     "setup": "sh scripts/npm/setup.sh",
     "diag": "sh scripts/npm/diag.sh",
     "build": "sh scripts/npm/setup.sh",
+    "audit": "sh scripts/npm/audit.sh",
     "compile": "sh scripts/npm/compile.sh",
     "docs": "node scripts/npm/docs.js",
     "lint": "sh ../common/scripts/lint/lint.sh cli-wallet",
