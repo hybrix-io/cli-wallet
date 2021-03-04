@@ -16,14 +16,16 @@ echo "[i] Install zip"
 apt-get -qq update
 apt-get -qq install -y zip
 
+echo "[i] Install sshpass"
+apt-get -qq install -y sshpass;
+
 VERSION="v"$(cat package.json | grep version | cut -d'"' -f4)
 echo "[i] Version $VERSION"
 
 mkdir -p /dist
 
-COMPONENT="cli-wallet"
-FILE_NAME="hybrixd.${COMPONENT}.$VERSION"
-LATEST_FILE_NAME="hybrixd.${COMPONENT}.latest"
+FILE_NAME="hybrix.cli-wallet.$VERSION"
+LATEST_FILE_NAME="hybrix.cli-wallet.latest"
 mkdir -p /hybrixd
 
 
@@ -32,22 +34,13 @@ echo "[.] Create packed distributables"
 zip -rq "/dist/${FILE_NAME}.zip" .
 tar -zcf "/dist/${FILE_NAME}.tar.gz" .
 
-echo "[.] Create service account key (required for gsutil)"
-echo "$SERVICE_ACCOUNT_KEY2" > /hybrixd/key.json
-
-echo "[.] Copy boto file  (required for gsutil)"
-
-echo "$BOTO_CONF" > ~/.boto
-
 echo "[.] Copying to latest folder"
-
-gsutil cp "/dist/${FILE_NAME}.zip" "gs://hybrix-dist/$COMPONENT/latest/$LATEST_FILE_NAME.zip"
-gsutil cp "/dist/${FILE_NAME}.tar.gz" "gs://hybrix-dist/$COMPONENT/latest/$LATEST_FILE_NAME.tar.gz"
+rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.zip" "$RELEASE_TARGET/cli-wallet/latest/$LATEST_FILE_NAME.zip"
+rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.tar.gz" "$RELEASE_TARGET/cli-wallet/latest/$LATEST_FILE_NAME.tar.gz"
 
 echo "[.] Copying to version folder"
-gsutil cp "/dist/${FILE_NAME}.zip" "gs://hybrix-dist/$COMPONENT/$VERSION/$FILE_NAME.zip"
-gsutil cp "/dist/${FILE_NAME}.tar.gz" "gs://hybrix-dist/$COMPONENT/$VERSION/$FILE_NAME.tar.gz"
-
+rsync -ra --rsync-path="mkdir -p $RELEASE_DIR/cli-wallet/$VERSION/ && rsync"  --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.zip" "$RELEASE_TARGET/cli-wallet/$VERSION/$FILE_NAME.zip"
+rsync -ra --rsh="$RELEASE_OPTIONS" "/dist/${FILE_NAME}.tar.gz" "$RELEASE_TARGET/cli-wallet/$VERSION/$FILE_NAME.tar.gz"
 
 export PATH="$OLDPATH"
 cd "$WHEREAMI"
