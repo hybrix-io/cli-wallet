@@ -47,4 +47,3 @@ The following allocation module commands are available:
 
  withdraw [symbol] [amount]  Withdraw an asset amount from your allocation
                              account back to your wallet.
-
