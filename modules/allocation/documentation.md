@@ -1,6 +1,6 @@
 
-Allocation module help
-----------------------
+Allocation module documentation
+-------------------------------
 
 This module makes it possible to manage your deterministic allocation account.
 It enables you to offer swap pairs for other users to be able to swap, and

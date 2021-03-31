@@ -1,6 +1,6 @@
 
-Deal module help
-----------------
+Deal module documentation
+-----------------------
 
 This module makes it possible to swap cryptocurrencies and tokens across
 ledgers. This is done by requesting a proposal from the swap matcher, and
