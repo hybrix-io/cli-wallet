@@ -1,9 +1,9 @@
 
 exports.args = 0;
 exports.host = 'allocation';
-exports.description = 'Show pairs available for swapping';
+exports.description = 'Show an overview of allocated pairs';
 exports.requireLogin = false;
 
 exports.pairs = (ops) => () => [
-  {query: '/e/deal/pairs'}, 'rout'
+  {query: '/e/allocation/pair/list'}, 'rout'
 ];
