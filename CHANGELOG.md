@@ -1,3 +1,22 @@
+# v0.6.2
+## 17-06-2021
+
+* Get stats of all pairs
+* Remove need to set deadline
+* List only own pairs of allocator
+* Moved allocated pair listing to allocation section
+* Get available pairs from deal engine
+* Small changes to text
+* Return options and arguments when no input for -M / --module
+* Display help also when user enters nothing for --module
+* Add help option to allocation module
+* Estimate method
+* Change security deposit default help message to HY
+* Audit improvements
+
+
+
+
 # v0.6.1
 ## 30-01-2021
 
