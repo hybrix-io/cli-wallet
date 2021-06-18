@@ -1,6 +1,6 @@
 {
   "name": "cli-wallet",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "command line wallet for hybrixd",
   "main": "lib/cli-wallet.js",
   "directories": {
