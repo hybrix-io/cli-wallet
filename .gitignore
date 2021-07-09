@@ -4,3 +4,4 @@ node_binaries
 storage/*
 interface
 modules/allocation/.EULA.consent
+.keys
