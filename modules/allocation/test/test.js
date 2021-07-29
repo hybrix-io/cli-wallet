@@ -27,11 +27,11 @@ hybrix.sequential([
 
   symbol => ({condition: symbol === SECURITY_SYMBOL, message: `Expected ${SECURITY_SYMBOL} as security asset.`, symbol}), 'assert',
   ({symbol}) => logger(`Security symbol configured to ${symbol}.`),
-  () => logger(`Reset mockchain.`),
-  {query: `/e/mockchain/reset`}, 'rout',
+  () => logger('Reset mockchain.'),
+  {query: '/e/mockchain/reset'}, 'rout',
   // TODO find allocation -> should fail (because no funds)
   // TODO create allocation -> should fail (because no funds)
-  () => logger(`Initialize mock funds.`),
+  () => logger('Initialize mock funds.'),
   {query: `/e/mockchain/mine/eth/${ADDRESS}/${START_BALANCE}`}, 'rout',
   {query: `/e/mockchain/mine/btc/${ADDRESS}/${START_BALANCE}`}, 'rout',
   // check balances
@@ -61,9 +61,9 @@ hybrix.sequential([
   // TODO try to set pair, should fail
 
   () => logger('Deposit security funds'),
-  {func: cliWallet, data: `--module allocation securityDeposit ${SECURITY_DEPOSIT}`}, 'call',
+  {func: cliWallet, data: `--module allocation securityReserve ${SECURITY_DEPOSIT}`}, 'call',
   () => logger('Withdraw security funds.'),
-  {func: cliWallet, data: `--module allocation securityWithdraw ${SECURITY_WITHDRAW}`}, 'call',
+  {func: cliWallet, data: `--module allocation securityExtract ${SECURITY_WITHDRAW}`}, 'call',
 
   () => logger('Get security details.'),
   {func: cliWallet, data: '--module allocation securityDetails'}, 'call',
