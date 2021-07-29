@@ -26,6 +26,13 @@ if [ -z "$1" ]; then
   echo "Type:  cli-wallet --help  ... to find out how to use the wallet."
   echo ""
   exit 0
+elif [ "$1" = "setup" ]; then
+  echo "This will setup your cli wallet with credentials. Please not that this will store your keys in a .keys file.";
+  read -p "Username " USERNAME
+  read -s -p "Password " PASSWORD
+  echo "$USERNAME $PASSWORD" > "./.keys"
+  echo "Your keys were stored succesfully."
+  exit 0
 fi
 
 cd "$CLI_WALLET" 2>&1 > /dev/null
