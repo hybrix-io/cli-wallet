@@ -46,7 +46,7 @@ exports.create = (ops) => (amount) => {
     }), 'parallel',
     init => ({
       detail: {data: init, step: 'id'},
-      exists: [{query: '/e/allocation/account/exists/' + init.accountId}, 'rout']
+      exists: [{query: '/e/swap/allocation/account/exists/' + init.accountId}, 'rout']
     }), 'parallel',
     data => data.exists
       ? [() => 'Account ' + data.detail.accountId + ' has already been initialized.']
@@ -54,7 +54,7 @@ exports.create = (ops) => (amount) => {
         getLogin(ops, {...this, host: ''}), 'session',
 
         // Retrieve the security symbol
-        {query: '/e/allocation/security-symbol'}, 'rout',
+        {query: '/e/swap/allocation/security-symbol'}, 'rout',
 
         // Retrieve available balances
         symbol => {
@@ -80,7 +80,7 @@ currently only ${availableMainBalance + availableAllocationBalance} ${SYMBOL} is
 (Main balance is ${availableMainBalance} ${SYMBOL}, allocation balance is ${availableAllocationBalance} ${SYMBOL}) `
         }), 'assert',
 
-        {query: '/e/allocation/account/init/' + data.detail.accountId + '/' + data.detail.secretKey, chan: 'y'}, 'rout',
+        {query: '/e/swap/allocation/account/init/' + data.detail.accountId + '/' + data.detail.secretKey, chan: 'y'}, 'rout',
 
         // Regiser existing balance
         // ({accountID, signature}) => ({query: '/e/allocation/pair/rebalance/' + accountID + '/' + symbol + '/' + amount + '/' + signature}), 'rout',

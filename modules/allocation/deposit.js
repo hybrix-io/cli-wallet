@@ -7,7 +7,7 @@ exports.description = 'Deposit an amount into an allocation account [argument: s
 
 exports.deposit = (ops) => (symbol, amount) => [
   ...getSignatureSteps(ops, this, 'rebalancePair', [symbol, String(amount)]),
-  ({accountID, signature}) => ({query: '/e/allocation/pair/rebalance/' + accountID + '/' + symbol + '/' + amount + '/' + signature}), 'rout',
+  ({accountID, signature}) => ({query: '/e/swap/allocation/pair/rebalance/' + accountID + '/' + symbol + '/' + amount + '/' + signature}), 'rout',
   {symbol}, 'getAddress', // get allocation address
   target => [ // create a transaction from regular session to allocation session
     getLogin(ops, {...this, host: ''}), 'session',

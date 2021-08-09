@@ -6,5 +6,5 @@ exports.description = 'Sequestrate an amount of HY from your allocation account 
 
 exports.securityReserve = (ops) => (amount) => [
   ...getSignatureSteps(ops, this, 'securityReserveAccount', ['reserve', String(amount)]),
-  ({accountID, signature}) => ({query: '/e/allocation/account/securityReserve/' + accountID + '/reserve/' + amount + '/' + signature}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/account/securityReserve/' + accountID + '/reserve/' + amount + '/' + signature}), 'rout'
 ];

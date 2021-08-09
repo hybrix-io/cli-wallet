@@ -6,5 +6,5 @@ exports.description = 'Get the details of the security reserve';
 
 exports.securityDetails = (ops) => () => [
   ...getSignatureSteps(ops, this, 'securityReserveAccount', ['details']),
-  ({accountID, signature}) => ({query: '/e/allocation/account/securityReserve/' + accountID + '/details/' + signature}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/account/securityReserve/' + accountID + '/details/' + signature}), 'rout'
 ];

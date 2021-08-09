@@ -33,5 +33,5 @@ exports.getSignatureSteps = getSignatureSteps;
 
 exports.pairDelete = (ops) => (fromBase, toSymbol) => [
   ...getSignatureSteps(ops, this, 'deletePair', [fromBase, toSymbol]),
-  ({accountID, signature}) => ({query: '/e/allocation/pair/delete/' + accountID + '/' + fromBase + '/' + toSymbol + '/' + signature}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/pair/delete/' + accountID + '/' + fromBase + '/' + toSymbol + '/' + signature}), 'rout'
 ];

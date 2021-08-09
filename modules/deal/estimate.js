@@ -5,5 +5,5 @@ exports.description = 'Prepare for a deal by requesting an estimate [argument: b
 exports.requireLogin = false;
 
 exports.estimate = (ops) => (base, symbol, targetAmount) => [
-  {query: '/e/deal/estimate/' + base + '/' + symbol + '/' + targetAmount }, 'rout'
+  {query: '/e/swap/deal/estimate/' + base + '/' + symbol + '/' + targetAmount }, 'rout'
 ];

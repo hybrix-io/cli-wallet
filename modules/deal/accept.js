@@ -8,7 +8,7 @@ exports.accept = (ops) => (dealID) => [
   getLogin(ops, {...this, host: ''}), 'session',
   keys => ({
     id: [{data: 'account ' + keys.secretKey}, 'hash', hash => ({data: hash, source: 'hex', target: 'base58'}), 'code'],
-    deal: [{query: '/e/deal/status/' + dealID}, 'rout']
+    deal: [{query: '/e/swap/deal/status/' + dealID}, 'rout']
   }), 'parallel',
   proposal => {
     if (typeof proposal !== 'object' || proposal === null) {
@@ -20,7 +20,7 @@ exports.accept = (ops) => (dealID) => [
         {symbol: proposal.deal.ask.symbol, amount: proposal.deal.ask.amount, target: proposal.deal.ask.target}, 'transaction',
         txid => (
           {
-            claim: [{query: '/e/deal/claim/' + dealID + '/' + txid}, 'rout'],
+            claim: [{query: '/e/swap/deal/claim/' + dealID + '/' + txid}, 'rout'],
             txid: {data: txid, step: 'id'}
           }
         ), 'parallel',

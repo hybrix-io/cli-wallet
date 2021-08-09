@@ -6,5 +6,5 @@ exports.description = 'Get details of an allocation pair [argument: base] [argum
 
 exports.pairGet = (ops) => (fromBase, toSymbol) => [
   ...getSignatureSteps(ops, this, 'getPair', [fromBase, toSymbol]),
-  ({accountID, signature}) => ({query: '/e/allocation/pair/get/' + accountID + '/' + fromBase + '/' + toSymbol + '/' + signature}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/pair/get/' + accountID + '/' + fromBase + '/' + toSymbol + '/' + signature}), 'rout'
 ];

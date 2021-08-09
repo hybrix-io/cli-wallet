@@ -11,6 +11,6 @@ function sortPairsByVolume (pairs) {
 }
 
 exports.pairStats = ops => () => [
-  {query: '/e/allocation/pair/stats'}, 'rout',
+  {query: '/e/swap/allocation/pair/stats'}, 'rout',
   pairs => JSON.stringify(sortPairsByVolume(pairs), 0, 2)
 ];
