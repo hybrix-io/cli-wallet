@@ -6,5 +6,5 @@ exports.description = 'Show an overview of allocated pairs';
 
 exports.pairs = (ops) => () => [
   ...getSignatureSteps(ops, this, 'detailsAccount', []),
-  ({accountID, signature}) => ({query: '/e/allocation/pair/list/' + accountID}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/pair/list/' + accountID}), 'rout'
 ];

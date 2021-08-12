@@ -6,5 +6,5 @@ exports.description = 'Extract an amount of HY from the security reserve to your
 
 exports.securityExtract = (ops) => (amount) => [
   ...getSignatureSteps(ops, this, 'securityReserveAccount', ['extract', String(amount)]),
-  ({accountID, signature}) => ({query: '/e/allocation/account/securityReserve/' + accountID + '/extract/' + amount + '/' + signature}), 'rout'
+  ({accountID, signature}) => ({query: '/e/swap/allocation/account/securityReserve/' + accountID + '/extract/' + amount + '/' + signature}), 'rout'
 ];

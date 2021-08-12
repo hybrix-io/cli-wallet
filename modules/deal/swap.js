@@ -7,7 +7,7 @@ exports.description = 'Request and accept a swap deal [argument: base] [argument
 exports.swap = ops => (base, symbol, targetAmount) => [
   getLogin(ops, {...this, host: ''}), 'session',
   {symbol}, 'getAddress', // get primary allocation address
-  target => ({query: '/e/deal/proposal/' + base + '/' + symbol + '/' + targetAmount + '/' + target}), 'rout',
+  target => ({query: '/e/swap/deal/proposal/' + base + '/' + symbol + '/' + targetAmount + '/' + target}), 'rout',
   proposal => {
     const dealID = proposal.id;
     const amount = proposal.ask.amount;
@@ -15,7 +15,7 @@ exports.swap = ops => (base, symbol, targetAmount) => [
     const symbol = proposal.ask.symbol;
     return [
       {symbol, amount, target}, 'transaction',
-      transactionId => ({query: '/e/deal/claim/' + transactionId + '/' + dealID}), 'rout'
+      transactionId => ({query: '/e/swap/deal/claim/' + transactionId + '/' + dealID}), 'rout'
     ];
   }, 'sequential'
 ];

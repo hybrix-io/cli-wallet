@@ -5,5 +5,5 @@ exports.description = 'Show pairs available for swapping';
 exports.requireLogin = false;
 
 exports.pairs = (ops) => () => [
-  {query: '/e/deal/pairs'}, 'rout'
+  {query: '/e/swap/deal/pairs'}, 'rout'
 ];
