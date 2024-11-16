@@ -34,7 +34,7 @@
   "license": "ISC",
   "dependencies": {
     "blessed": "^0.1.81",
-    "clipboardy": "^1.2.3",
+    "clipboardy": "^4.0.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {}
